@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Relic Isle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<canvas id="game"></canvas>
+
+<!-- Title screen -->
+<div id="title" class="screen">
+  <div class="parallax sunset">
+    <img src="assets/backgrounds/sunset_sea_1.png" alt="">
+    <img src="assets/backgrounds/sunset_sea_2.png" alt="" class="drift slow">
+    <img src="assets/backgrounds/sunset_sea_3.png" alt="" class="drift">
+    <img src="assets/backgrounds/sunset_sea_4.png" alt="">
+  </div>
+  <div class="title-card panel">
+    <h1>Relic Isle</h1>
+    <p class="sub">Survive the nights. Build a shelter. Find all six legendary relics.</p>
+    <div class="btn-row"><button id="btnContinue2" class="btn hidden">Continue</button><button id="btnStart" class="btn">Start</button></div>
+    <div class="controls">
+      <div><b>WASD</b> move · <b>Shift</b> sprint</div>
+      <div><b>Left click</b> hit / gather / place / eat</div>
+      <div><b>Right click</b> or <b>F</b> interact · <b>E</b> eat</div>
+      <div><b>1–0</b> / wheel hotbar · <b>C</b> craft · <b>I</b> inventory</div>
+      <div><b>J</b> journal · <b>M</b> map · <b>P</b> save · <b>Esc</b> close</div>
+    </div>
+    <p class="credits">Art, UI &amp; sounds by Kenney (CC0) · Backgrounds by CraftPix.net (OGA-BY 3.0)<br>Music: "Feel Good Island" by Brandon Morris (CC0) · "Spooky Island" by Eric Matyas, Soundimage.org (CC-BY 4.0)<br>Full list in assets/CREDITS.md</p>
+  </div>
+</div>
+
+<!-- Death screen -->
+<div id="death" class="screen hidden">
+  <div class="parallax moon">
+    <img src="assets/backgrounds/moon_sea_1.png" alt="">
+    <img src="assets/backgrounds/moon_sea_2.png" alt="" class="drift slow">
+    <img src="assets/backgrounds/moon_sea_3.png" alt="">
+    <img src="assets/backgrounds/moon_sea_4.png" alt="" class="drift">
+    <img src="assets/backgrounds/moon_sea_5.png" alt="">
+  </div>
+  <div class="title-card panel">
+    <h1>You fell…</h1>
+    <p class="sub" id="deathMsg">The island claims another wanderer.</p>
+    <button id="btnRespawn" class="btn">Respawn</button>
+  </div>
+</div>
+
+<!-- Win screen -->
+<div id="win" class="screen hidden">
+  <div class="parallax sunset">
+    <img src="assets/backgrounds/sunset_sea_1.png" alt="">
+    <img src="assets/backgrounds/sunset_sea_2.png" alt="" class="drift slow">
+    <img src="assets/backgrounds/sunset_sea_3.png" alt="" class="drift">
+    <img src="assets/backgrounds/sunset_sea_4.png" alt="">
+  </div>
+  <div class="title-card panel">
+    <h1>The curse is broken!</h1>
+    <p class="sub" id="winMsg"></p>
+    <div id="winRelics" class="relic-row"></div>
+    <button id="btnContinue" class="btn">Keep exploring</button>
+  </div>
+</div>
+
+<!-- In-game panels -->
+<div id="panelCraft" class="panel modal hidden">
+  <h2>Crafting <span class="hint">C / Esc to close</span></h2>
+  <div id="craftList" class="list"></div>
+</div>
+<div id="panelInv" class="panel modal hidden">
+  <h2>Inventory <span class="hint">click an item to put it in the selected hotbar slot</span></h2>
+  <div id="invList" class="grid"></div>
+</div>
+<div id="panelJournal" class="panel modal hidden">
+  <h2>Explorer's Journal <span class="hint">J / Esc to close</span></h2>
+  <div id="journalList" class="list"></div>
+</div>
+<div id="panelMap" class="panel modal hidden">
+  <h2>Island Map <span class="hint">M / Esc to close</span></h2>
+  <canvas id="mapCanvas" width="448" height="448"></canvas>
+</div>
+<div id="dialog" class="panel dialog hidden"></div>
+<button id="btnSave" class="btn btn-save hidden" title="Save game (P)">Save</button>
+<div id="toasts"></div>
+<div id="banner" class="hidden"></div>
+<div id="fade"></div>
+
+<script src="js/game.js"></script>
+</body>
+</html>

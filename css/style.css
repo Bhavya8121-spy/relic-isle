@@ -1,0 +1,113 @@
+:root {
+  --ink: #3b2414;
+  --ink-soft: #4f3219;
+  --paper: #f3e3c3;
+  --gold: #ffd75e;
+  --sea: #1d2b53;
+  --danger: #c0392b;
+}
+* { box-sizing: border-box; }
+html, body {
+  margin: 0; height: 100%; overflow: hidden;
+  background: #0d1422;
+  font-family: "Pixelify Sans", ui-monospace, monospace;
+  color: var(--ink);
+  user-select: none;
+}
+canvas#game { display: block; width: 100vw; height: 100vh; image-rendering: pixelated; cursor: crosshair; }
+.hidden { display: none !important; }
+
+/* Kenney Pixel UI 9-slice panels */
+.panel {
+  border-style: solid;
+  border-width: 24px;
+  border-image: url(../assets/ui/panel_tan.png) 16 fill / 24px stretch;
+  image-rendering: pixelated;
+}
+.btn {
+  font: 700 22px "Pixelify Sans", monospace;
+  color: #fff; text-shadow: 0 2px 0 #1e5a20;
+  padding: 2px 28px; cursor: pointer; background: none;
+  border-style: solid; border-width: 18px;
+  border-image: url(../assets/ui/button_green.png) 16 fill / 18px stretch;
+  image-rendering: pixelated;
+}
+.btn-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.btn-save { position: fixed; right: 16px; bottom: 16px; z-index: 20; font-size: 16px; padding: 0 12px; border-width: 14px; border-image-width: 14px; }
+.btn:active { border-image-source: url(../assets/ui/button_green_pressed.png); transform: translateY(2px); }
+.btn:disabled { filter: grayscale(1) brightness(.85); cursor: not-allowed; }
+
+/* Full screens with CraftPix parallax backgrounds */
+.screen { position: fixed; inset: 0; display: grid; place-items: center; z-index: 50; }
+.parallax { position: absolute; inset: 0; overflow: hidden; }
+.parallax img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; image-rendering: pixelated; }
+.parallax img.drift { width: 200%; animation: drift 60s linear infinite; object-fit: fill; }
+.parallax img.drift.slow { animation-duration: 140s; }
+@keyframes drift { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.title-card { position: relative; width: min(560px, calc(100vw - 32px)); text-align: center; padding: 6px 10px; }
+.title-card h1 { margin: 0 0 4px; font-size: clamp(36px, 7vw, 58px); color: var(--ink); letter-spacing: 1px; }
+.title-card .sub { margin: 0 0 16px; font-size: 18px; color: var(--ink-soft); }
+.controls { margin-top: 16px; font-size: 15px; line-height: 1.6; color: var(--ink-soft); }
+.controls b { color: var(--ink); }
+.credits { margin: 14px 0 0; font-size: 12px; line-height: 1.5; color: var(--ink-soft); }
+.relic-row { display: flex; gap: 8px; justify-content: center; margin: 0 0 16px; }
+.relic-row img { width: 48px; height: 48px; image-rendering: pixelated; }
+
+/* Modals */
+.modal {
+  position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  width: min(620px, calc(100vw - 32px)); max-height: calc(100vh - 60px); overflow: auto; z-index: 40;
+}
+.modal h2 { margin: 0 0 10px; font-size: 26px; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.modal .hint { font-size: 13px; color: var(--ink-soft); font-weight: 400; }
+.list { display: flex; flex-direction: column; gap: 6px; }
+.row {
+  display: flex; align-items: center; gap: 12px; padding: 4px 8px;
+  border-style: solid; border-width: 12px;
+  border-image: url(../assets/ui/slot_tan_inlay.png) 14 fill / 12px stretch;
+  image-rendering: pixelated;
+}
+.row img.icon { width: 40px; height: 40px; image-rendering: pixelated; flex: none; }
+.row .info { flex: 1; min-width: 0; }
+.row .name { font-weight: 700; font-size: 18px; }
+.row .desc { font-size: 14px; color: var(--ink-soft); }
+.row .cost { display: flex; gap: 8px; flex-wrap: wrap; font-size: 14px; margin-top: 2px; }
+.row .cost span { display: inline-flex; align-items: center; gap: 2px; }
+.row .cost img { width: 20px; height: 20px; image-rendering: pixelated; }
+.row .cost .lack { color: var(--danger); }
+.row .btn { font-size: 16px; padding: 0 10px; border-width: 12px; border-image-width: 12px; }
+.row.found .name { color: #8a5a00; }
+.row.locked { opacity: .75; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(84px, 1fr)); gap: 6px; }
+.cell {
+  display: flex; flex-direction: column; align-items: center; padding: 2px; cursor: pointer; font-size: 13px; text-align: center;
+  border-style: solid; border-width: 12px;
+  border-image: url(../assets/ui/slot_tan_inlay.png) 14 fill / 12px stretch;
+  image-rendering: pixelated;
+}
+.cell:hover { filter: brightness(1.08); }
+.cell img { width: 40px; height: 40px; image-rendering: pixelated; }
+#mapCanvas { display: block; margin: 0 auto; width: min(448px, 100%); image-rendering: pixelated; background: var(--sea); }
+
+.dialog {
+  position: fixed; left: 50%; bottom: 120px; transform: translateX(-50%);
+  width: min(560px, calc(100vw - 32px)); z-index: 30; font-size: 18px; line-height: 1.4; padding: 2px 6px;
+}
+.dialog small { display: block; color: var(--ink-soft); margin-top: 6px; font-size: 13px; }
+
+#toasts { position: fixed; top: 64px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 6px; z-index: 35; pointer-events: none; }
+.toast { background: rgba(20, 14, 8, .78); color: #fff; padding: 6px 14px; border-radius: 4px; font-size: 17px; animation: toast 3.2s forwards; text-align: center; }
+.toast.warn { color: #ffd0c8; }
+.toast.good { color: var(--gold); }
+@keyframes toast { 0% { opacity: 0; transform: translateY(-6px);} 8% { opacity: 1; transform: none;} 80% { opacity: 1;} 100% { opacity: 0;} }
+
+#banner {
+  position: fixed; top: 22%; left: 50%; transform: translateX(-50%); z-index: 36; pointer-events: none;
+  text-align: center; color: var(--gold); text-shadow: 0 3px 0 #000, 0 5px 6px rgba(0, 0, 0, .55);
+  font-size: clamp(26px, 5vw, 44px); font-weight: 700; animation: banner 4s forwards;
+}
+#banner small { display: block; font-size: 18px; color: #fff; font-weight: 400; }
+@keyframes banner { 0% { opacity: 0; transform: translate(-50%, 10px) scale(.9);} 10% { opacity: 1; transform: translate(-50%, 0) scale(1);} 80% { opacity: 1;} 100% { opacity: 0;} }
+
+#fade { position: fixed; inset: 0; background: #000; opacity: 0; pointer-events: none; transition: opacity .8s; z-index: 45; }
+#fade.on { opacity: 1; }
