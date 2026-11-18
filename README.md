@@ -6,6 +6,19 @@ A top-down pixel-art survival game that runs in the browser. You're shipwrecked 
 
 No install needed. It runs in any modern desktop browser (Chrome, Edge, Firefox, Safari) with a keyboard and mouse.
 
+![Gameplay: gathering and building by day, sheltering at night, swimming to the islet for a relic](media/gameplay.gif)
+
+<sub>Full-resolution recording: [media/gameplay.mp4](media/gameplay.mp4)</sub>
+
+## Screenshots
+
+| | |
+|---|---|
+| ![Title screen](media/screenshots/01-title.png) **Title screen** | ![Building by day](media/screenshots/02-day-building.png) **Gather resources and build** |
+| ![Crafting menu](media/screenshots/03-crafting.png) **Crafting** | ![Night in the shelter](media/screenshots/04-night-shelter.png) **Monsters come out at night. Your walls keep them out** |
+| ![Swimming](media/screenshots/05-swimming.png) **Swim inside the buoy line** | ![Relic found](media/screenshots/06-relic-found.png) **Find the six legendary relics** |
+| ![Cyclops boss](media/screenshots/07-cyclops-boss.png) **The Cyclops of the Stone Circle** | ![Journal](media/screenshots/08-journal.png) **Journal with relic clues** |
+
 ---
 
 ## Goal
@@ -124,6 +137,7 @@ assets/
   audio/sfx/        Kenney RPG + Interface sound effects
   ui/               Kenney Pixel UI panels and buttons
   CREDITS.md        every asset's source and license
+media/              screenshots and gameplay recording for this README
 ```
 
 ## Credits

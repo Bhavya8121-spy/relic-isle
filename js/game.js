@@ -836,7 +836,7 @@ function update(dt) {
   spawnAcc += dt; if (night && spawnAcc > 2.4) { spawnAcc = 0; trySpawnNight(); }
   animalAcc += dt; if (animalAcc > 15) { animalAcc = 0; trySpawnAnimal(true); }
   guardAcc += dt; if (guardAcc > 3) { guardAcc = 0; tryGuards(); }
-  if (night && !bossDefeated && !mobs.some(m => m.def.boss) && Math.hypot(player.x - sites.circle.x, player.y - sites.circle.y) < 15) {
+  if (night && !bossDefeated && !mobs.some(m => m.def.boss) && Math.hypot(player.x - sites.circle.x, player.y - sites.circle.y) < 8) {
     spawnMob('cyclops', sites.circle.x, sites.circle.y);
     toast('The ground trembles… a one-eyed giant rises in the Stone Circle!', 'warn'); sfx('bong_001', .7, .6);
   }
